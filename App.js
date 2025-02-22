@@ -3,6 +3,12 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+app.get('/check', (req, res) => {
+ res.status(200).json({ status: 'OK' });
+});
+
+
 app.get('/cut', async (req, res) => {
  const urlToShorten = req.query.url;
  if (!urlToShorten) {
@@ -25,6 +31,8 @@ app.get('/cut', async (req, res) => {
   res.status(500).json({ error: 'An error occurred while shortening the URL' });
   }
 });
+
+
 
 app.listen(PORT, () => {
  console.log(`Server is running on http://localhost:${PORT}`);
